@@ -110,3 +110,23 @@ userRouter.post('/register', async (req, res) => {
     });
   }
 });
+userRouter.get('/token', async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.send({
+        success: false,
+        error: 'Please login',
+      });
+    }
+    const user = { name: req.user.name, role: req.user.role };
+    res.send({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      error: error.message,
+    });
+  }
+});

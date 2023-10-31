@@ -4,6 +4,7 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { userRouter } from './routes/userRouter.js';
+import { listingRouter } from './routes/listingRouter.js';
 dotenv.config();
 export const prisma = new PrismaClient();
 const app = express();
@@ -40,6 +41,7 @@ app.use(async (req, res, next) => {
 });
 
 app.use('/users', userRouter);
+app.use('/listings', listingRouter);
 
 //404 Route not found
 app.use((req, res, next) => {
